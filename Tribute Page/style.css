@@ -1,0 +1,196 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+:root {
+  --hdr-ftr-color: rgb(60, 140, 175);
+  --container-color: hsl(36, 54%, 90%);
+  --body-color: hsl(36, 54%, 78%);
+  /*   --hdr-ftr-color: #8c1212; */
+  font-size: 10px;
+}
+
+body {
+  font-family: Arial;
+  color: #444;
+  background-color: var(--body-color);
+  /*   background: linear-gradient(to right, hsl(36, 20%, 80%), hsl(36, 20%, 60%), hsl(36, 20%, 80%)); */
+  position: relative;
+}
+
+.container {
+  position: absolute;
+  margin: 0 50%;
+  font-size: calc(1rem + 1vmin);
+  transform: translateX(-50%);
+  width: 100%;
+  min-width: 312px;
+  padding: 0 3.2vmin;
+  max-width: 170vmin;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: var(--container-color);
+  clip-path: polygon(
+    calc(50% + 53.2vmin) 0%,
+    100% 100%,
+    0% 100%,
+    calc(50% - 53.2vmin) 0%
+  );
+  overflow: visible;
+}
+
+.container > * {
+  width: 100%;
+  max-width: 100vmin;
+}
+
+.container__header {
+  position: absolute;
+  padding: 0 3.2vmin;
+  margin: 0;
+  width: 100%;
+  max-width: none;
+  height: 52.4vh;
+  max-height: 60vw;
+  display: flex;
+  justify-content: center;
+  background-color: var(--hdr-ftr-color);
+  color: var(--container-color);
+  clip-path: polygon(0 0, 100% 0, 100% 100%, 50% 80%, 0 100%);
+}
+
+.container__title {
+  padding-top: 5vmin;
+  width: 100%;
+  max-width: 100vmin;
+  font-size: 7.4vmin;
+  font-weight: bold;
+  /*   color: #333; */
+  /*   text-shadow: 0px 2px 20px rgba(0, 0, 0, 0.3); */
+  /*   color: var(--body-color); */
+}
+
+.container__hero {
+  position: relative;
+  margin-top: 18vmin;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: var(--body-color);
+  width: 100%;
+  height: 60vh;
+  max-height: 90vw;
+  /*   width: 100%; */
+  padding-bottom: 3%;
+  overflow: hidden;
+  clip-path: polygon(
+    50% 0,
+    calc(102% - 2vw) 10%,
+    100% 50%,
+    calc(103% - 2.75vw) 100%,
+    calc(-3% + 2.75vw) 100%,
+    0 50%,
+    calc(-2% + 2vw) 10%
+  );
+}
+
+#porthole {
+  background-color: red;
+  position: absolute;
+  top: 0;
+  margin: auto;
+  height: 97%;
+  width: 100%;
+  clip-path: polygon(
+    50% 0,
+    calc(102% - 2vw) 10%,
+    100% 51%,
+    calc(102% - 2vw) 90%,
+    50% 100%,
+    calc(-2% + 2vw) 90%,
+    0 51%,
+    calc(-2% + 2vw) 10%
+  );
+}
+
+#c {
+  position: absolute;
+  margin: auto;
+  top: 0;
+  left: 0;
+  right: 0;
+  width: 100%;
+}
+
+#img-div {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  /*     opacity: 0.5; */
+  /*     opacity: 0; */
+}
+
+#img-div img {
+  object-fit: cover;
+  max-height: 100%;
+  min-width: 100%;
+  transition: filter 600ms ease-in-out, opacity 1000ms ease-in-out;
+}
+
+#img-div:hover img {
+  filter: blur(10px);
+  opacity: 0;
+  transition: filter 600ms ease-in-out, opacity 1000ms ease-in-out;
+}
+
+#img-div:hover .img-info {
+  /*   background-color: green; */
+  transform: translateY(100%);
+  transition: transform 600ms ease-in-out;
+}
+
+.img-info {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  background-color: red;
+  opacity: 0.5;
+  height: 18%;
+  transition: transform 600ms ease-in-out;
+}
+
+#tribute-info {
+  padding-top: 2vmin;
+  padding-bottom: 40vh;
+}
+
+.quotes {
+  width: 100%;
+  background-color: white;
+  padding: 1em;
+  border-radius: 2vmin;
+  margin-bottom: 2vmin;
+}
+
+.footer {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  max-width: none;
+  /*   margin: 0; */
+  height: 35vh;
+  max-height: 90vw;
+  background-color: var(--hdr-ftr-color);
+  clip-path: polygon(50% 20%, 100% 0, 100% 100%, 0 100%, 0 0);
+}
+
+/* get rid of container__bg and make header and footer have clip path. Have them be same size, like 20 vmin for example. Header should be absolute, or hero should be instead.*/
+
+/* If you wish to make an apple pie from scratch, you must first invent the universe. */
+
+/* Use cherry color for links, reference to Carl's sweater: #8c1212; */
