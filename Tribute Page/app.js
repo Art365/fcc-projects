@@ -33,30 +33,29 @@ window.onload = function() {
     this.distance = distance;
     this.ar = this.r / this.distance;
     this.color = color;
+  }
+  
+  Star.prototype.draw = function(context) {
+    context.beginPath();
+    context.moveTo(this.x, this.y);
+    context.arc(this.x, this.y, this.ar, 0, Math.PI * 2, false);
+    context.fillStyle = this.color;
+    context.fill();
+  }
 
-    Star.prototype.draw = function(context) {
-      context.beginPath();
-      context.moveTo(this.x, this.y);
-      context.arc(this.x, this.y, this.ar, 0, Math.PI * 2, false);
-      context.fillStyle = this.color;
-      context.fill();
-    }
+  Star.prototype.update = function() {
+    this.ar += this.ar / this.distance;
+    this.distance -= 4;
 
-    Star.prototype.update = function() {
-      this.ar += this.ar / this.distance;
-      this.distance -= 4;
-
-      if (this.x < 0 || this.x > canvasWidth || this.y < 0 || this.y > canvasHeight || this.distance < 1) {
-        this.x = randomInt(canvasWidth);
-        this.y = randomInt(canvasHeight);
-        this.r = randomInRange(minStarRadius, maxStarRadius);
-        this.distance = randomInRange(5000, 10000);
-        this.ar = this.r / this.distance;
-      } else {
-        this.x += (this.x - canvasCenter.x) / this.distance;
-        this.y += (this.y - canvasCenter.y) / this.distance;
-      }
-      // this.draw(context);
+    if (this.x < 0 || this.x > canvasWidth || this.y < 0 || this.y > canvasHeight || this.distance < 1) {
+      this.x = randomInt(canvasWidth);
+      this.y = randomInt(canvasHeight);
+      this.r = randomInRange(minStarRadius, maxStarRadius);
+      this.distance = randomInRange(5000, 10000);
+      this.ar = this.r / this.distance;
+    } else {
+      this.x += (this.x - canvasCenter.x) / this.distance;
+      this.y += (this.y - canvasCenter.y) / this.distance;
     }
   }
 
