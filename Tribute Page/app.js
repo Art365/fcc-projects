@@ -25,11 +25,11 @@ window.onload = function() {
     canvasWidth = canvas.width = offCanvas.width = porthole.offsetWidth;
     canvasHeight = canvas.height = offCanvas.height = porthole.offsetHeight;
     canvasCenter = { x: canvasWidth / 2, y: canvasHeight / 2};
-    minStarRadius = Math.max(canvasWidth, canvasHeight);
+    minStarRadius = 1;
     maxStarRadius = minStarRadius * 40;
-    minDistance = minStarRadius * 8;
-    maxDistance = maxStarRadius;
-    speed = 6;
+    // minDistance = 1;
+    maxDistance = Math.max(canvasWidth, canvasHeight);
+    speed = 1;
   };
       
   init();
@@ -43,28 +43,26 @@ window.onload = function() {
       this.y = y;
       this.r = r;
       this.distance = distance;
-      this.ar = r / distance;
       this.color = color;
 	  }
 	
 	  draw(context) {
       context.beginPath();
       context.moveTo(this.x, this.y);
-      context.arc(this.x, this.y, this.ar, 0, Math.PI * 2, false);
+      context.arc(this.x, this.y, this.r, 0, Math.PI * 2, false);
       context.fillStyle = this.color;
       context.fill();
     }
 	
 	  update() {
-	    this.ar += (this.ar / this.distance) * 5;
+	    this.r += (this.r / this.distance);
       this.distance -= speed;
 
       if (this.x < 0 || this.x > canvasWidth || this.y < 0 || this.y > canvasHeight || this.distance < 0) {
         this.x = randomInt(canvasWidth);
         this.y = randomInt(canvasHeight);
-        this.r = randomInRange(minStarRadius, maxStarRadius);
-        this.distance = this.r;
-        this.ar = 1;
+        this.r = 1;
+        this.distance = randomInt(maxDistance);
       } else {
         this.x += (this.x - canvasCenter.x) / this.distance;
         this.y += (this.y - canvasCenter.y) / this.distance;
@@ -89,12 +87,15 @@ window.onload = function() {
   //   return starsArr;
   // }
 
+
+  // REWORK THIS SO THAT MINSTARRADIUS IS 1 AND MAX IS LIKE 30. REMOVE AR VARIABLE, AND JUST INCREASE RADIUS WITH UPDATE.
+
   function createStars(num) {
     let starsArr = [];
     for (let i = 0; i < num; i++) {
-      let [x, y] = [canvasWidth / 2, canvasHeight / 2];
-      let radius = maxStarRadius;
-      let distance = randomInRange(minDistance, maxDistance);
+      let [x, y] = [randomInt(canvasWidth), randomInt(canvasHeight)];
+      let radius = randomInt(maxStarRadius);
+      let distance = randomInt(maxDistance);
       let [red, green, blue] = [randomInRange(198,255), randomInRange(198,255), randomInRange(198,255)];
       green = Math.min(red, green, blue);
       let color = `rgba(${red},${green},${blue})`;
@@ -104,7 +105,7 @@ window.onload = function() {
   }
   
   
-  let stars = createStars(1);
+  let stars = createStars(STAR_COUNT);
 
   function resizeCanvas() {
     init();
