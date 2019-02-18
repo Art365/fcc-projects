@@ -5,6 +5,7 @@
 }
 
 :root {
+  font-size: 16px;
 /*   --hdr-ftr-color: hsl(36, 54%, 70%); */
 /*   --hdr-ftr-color: linear-gradient(hsl(36, 54%, 60%), hsl(36, 54%, 70%)); */
   --hdr-ftr-color: linear-gradient(hsl(36, 50%, 65%), hsl(36, 50%, 74%));
@@ -16,7 +17,6 @@
 /*   --body-color: linear-gradient(to right, hsl(36, 34%, 50%), hsl(36, 34%, 35%), hsl(36, 34%, 50%)); */
   --body-color: linear-gradient(to right, hsl(36, 32%, 58%), hsl(36, 32%, 44%), hsl(36, 34%, 58%));
   /*   --hdr-ftr-color: #8c1212; */
-  font-size: 10px;
 }
 
 body {
@@ -109,7 +109,7 @@ body {
 }
 
 #porthole {
-  background-color: red;
+  background-color: green;
   position: absolute;
   top: 0;
   margin: auto;
@@ -142,7 +142,7 @@ body {
   height: 100%;
   display: flex;
   /*     opacity: 0.5; */
-/*       opacity: 0; */
+      opacity: 0;
 }
 
 #img-div img {
@@ -164,12 +164,12 @@ body {
   transition: transform 600ms ease-in-out;
 }
 
-.img-info {
+.container__img-info {
   position: absolute;
   bottom: 0;
   left: 0;
   width: 100%;
-  background-color: red;
+  background-color: green;
   opacity: 0.5;
   height: 18%;
   transition: transform 600ms ease-in-out;
@@ -180,12 +180,16 @@ body {
   padding-bottom: 31vh;
 }
 
-.quotes {
+.container__quotes {
   width: 100%;
   background-color: white;
   padding: 1em;
   border-radius: 2vmin;
   margin-bottom: 2vmin;
+}
+
+.container__quote {
+  font-style: italic;
 }
 
 .footer {

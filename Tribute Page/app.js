@@ -5,19 +5,34 @@ window.onload = function() {
         round = (x) => Math.round(x),
         randomInt = (x) => Math.round(Math.random() * x),
         randomInRange = (min, max) => min + Math.random() * (max - min);
-  let canvas = document.getElementById("c"),
+  let porthole = document.getElementById("porthole"),
+      canvas = document.getElementById("c"),
       offCanvas = document.createElement("canvas"),
-      canvasWidth = canvas.width = offCanvas.width = document.body.offsetWidth,
-      canvasHeight = canvas.height = offCanvas.height = document.body.offsetHeight,
-      canvasCenter = { x: canvasWidth / 2, y: canvasHeight / 2},
-      minStarRadius = Math.max(canvasWidth, canvasHeight),
-      maxStarRadius = minStarRadius * 20,
-      minDistance = minStarRadius * 3,
-      maxDistance = minStarRadius * 30,
-      speed = 6,
-      ctx = canvas.getContext("2d", { alpha: false }),
-      offCtx = offCanvas.getContext("2d", { alpha: false });
+      ctx,
+      offCtx,
+      canvasWidth,
+      canvasHeight,
+      canvasCenter,
+      minStarRadius,
+      maxStarRadius,
+      minDistance,
+      maxDistance,
+      speed;
 
+  const init = function() {
+    ctx = canvas.getContext("2d", { alpha: false });
+    offCtx = offCanvas.getContext("2d", { alpha: false });
+    canvasWidth = canvas.width = offCanvas.width = porthole.offsetWidth;
+    canvasHeight = canvas.height = offCanvas.height = porthole.offsetHeight;
+    canvasCenter = { x: canvasWidth / 2, y: canvasHeight / 2};
+    minStarRadius = Math.max(canvasWidth, canvasHeight);
+    maxStarRadius = minStarRadius * 40;
+    minDistance = minStarRadius * 8;
+    maxDistance = maxStarRadius;
+    speed = 6;
+  };
+      
+  init();
   
   window.addEventListener("resize", resizeCanvas, false);
 
@@ -41,15 +56,15 @@ window.onload = function() {
     }
 	
 	  update() {
-	    this.ar += this.ar / this.distance;
+	    this.ar += (this.ar / this.distance) * 5;
       this.distance -= speed;
 
       if (this.x < 0 || this.x > canvasWidth || this.y < 0 || this.y > canvasHeight || this.distance < 0) {
         this.x = randomInt(canvasWidth);
         this.y = randomInt(canvasHeight);
         this.r = randomInRange(minStarRadius, maxStarRadius);
-        this.distance = maxDistance;
-        this.ar = this.r / this.distance;
+        this.distance = this.r;
+        this.ar = 1;
       } else {
         this.x += (this.x - canvasCenter.x) / this.distance;
         this.y += (this.y - canvasCenter.y) / this.distance;
@@ -60,12 +75,25 @@ window.onload = function() {
   
 
   //initialize some stars
+  // function createStars(num) {
+  //   let starsArr = [];
+  //   for (let i = 0; i < num; i++) {
+  //     let [x, y] = [randomInt(canvasWidth), randomInt(canvasHeight)];
+  //     let radius = randomInRange(minStarRadius, maxStarRadius);
+  //     let distance = randomInRange(minDistance, maxDistance);
+  //     let [red, green, blue] = [randomInRange(198,255), randomInRange(198,255), randomInRange(198,255)];
+  //     green = Math.min(red, green, blue);
+  //     let color = `rgba(${red},${green},${blue})`;
+  //     starsArr[i] = new Star(x, y, radius, distance, color);
+  //   }
+  //   return starsArr;
+  // }
+
   function createStars(num) {
     let starsArr = [];
     for (let i = 0; i < num; i++) {
-      let x = randomInt(canvasWidth);
-      let y = randomInt(canvasHeight);
-      let radius = randomInRange(minStarRadius, maxStarRadius);
+      let [x, y] = [canvasWidth / 2, canvasHeight / 2];
+      let radius = maxStarRadius;
       let distance = randomInRange(minDistance, maxDistance);
       let [red, green, blue] = [randomInRange(198,255), randomInRange(198,255), randomInRange(198,255)];
       green = Math.min(red, green, blue);
@@ -76,21 +104,10 @@ window.onload = function() {
   }
   
   
-  let stars = createStars(STAR_COUNT);
+  let stars = createStars(1);
 
   function resizeCanvas() {
-    canvasWidth = document.body.offsetWidth;
-    canvasHeight = document.body.offsetHeight;
-    canvasCenter = { x: canvasWidth / 2, y: canvasHeight / 2};
-    canvas.width = offCanvas.width = canvasWidth;
-    canvas.height = offCanvas.height = canvasHeight;
-    ctx = canvas.getContext("2d", { alpha: false });
-    offCtx = offCanvas.getContext("2d", { alpha: false });
-    minStarRadius = Math.max(canvasWidth, canvasHeight);
-    maxStarRadius = minStarRadius * 20;
-    minDistance = minStarRadius * 3;
-    maxDistance = minStarRadius * 30,
-    speed = 6,
+    init();
     stars = createStars(STAR_COUNT);
   }
   
