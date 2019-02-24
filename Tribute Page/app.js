@@ -15,7 +15,8 @@ window.onload = function() {
       minStarRadius,
       maxStarRadius,
       maxDistance = 3000,
-      speed = 1;
+      speed = 1, 
+      stars;
 
   const init = function() {
     ctx = canvas.getContext("2d", { alpha: false });
@@ -23,8 +24,8 @@ window.onload = function() {
     canvasWidth = canvas.width = offCanvas.width = porthole.offsetWidth;
     canvasHeight = canvas.height = offCanvas.height = porthole.offsetHeight;
     canvasCenter = { x: canvasWidth / 2, y: canvasHeight / 2};
-    minStarRadius = 1;
-    maxStarRadius = minStarRadius * 2.5;
+    minStarRadius = 0.5;
+    maxStarRadius = minStarRadius * 5;
     starCount = (canvasWidth + canvasHeight) / 2;
   };
       
@@ -53,10 +54,10 @@ window.onload = function() {
 	    this.r += this.r / this.distance;
       this.distance -= speed;
 
-      if (this.x < 0 || this.x > canvasWidth || this.y < 0 || this.y > canvasHeight || this.distance < 0) {
+      if (this.x + this.r < 0 || this.x - this.r > canvasWidth || this.y + this.r < 0 || this.y - this.r > canvasHeight || this.distance < 0) {
         this.x = randomInt(canvasWidth);
         this.y = randomInt(canvasHeight);
-        this.r = 1;
+        this.r = minStarRadius;
         this.distance = randomInt(maxDistance);
       } else {
         this.x += (this.x - canvasCenter.x) / this.distance;
@@ -65,8 +66,6 @@ window.onload = function() {
 	  }
 	
   }
-  
-
 
   function createStars(num) {
     let starsArr = [];
@@ -83,7 +82,7 @@ window.onload = function() {
   }
   
   
-  let stars = createStars(starCount);
+  stars = createStars(starCount);
 
   function resizeCanvas() {
     init();

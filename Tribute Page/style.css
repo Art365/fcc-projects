@@ -6,17 +6,9 @@
 
 :root {
   font-size: 16px;
-/*   --hdr-ftr-color: hsl(36, 54%, 70%); */
-/*   --hdr-ftr-color: linear-gradient(hsl(36, 54%, 60%), hsl(36, 54%, 70%)); */
-  --hdr-ftr-color: linear-gradient(hsl(36, 50%, 65%), hsl(36, 50%, 74%));
-  /*   background: linear-gradient(to right, hsl(36, 20%, 80%), hsl(36, 20%, 60%), hsl(36, 20%, 80%)); */
-/*   --container-color: hsl(36, 54%, 90%); */
-/*   --container-color: linear-gradient( hsl(36, 54%, 90%), hsl(36, 54%, 84%)); */
-  --container-color: linear-gradient(hsl(36, 52%, 80%), hsl(36, 52%, 90%));
-/*   --body-color: hsl(36, 54%, 78%); */
-/*   --body-color: linear-gradient(to right, hsl(36, 34%, 50%), hsl(36, 34%, 35%), hsl(36, 34%, 50%)); */
-  --body-color: linear-gradient(to right, hsl(36, 32%, 58%), hsl(36, 32%, 44%), hsl(36, 34%, 58%));
-  /*   --hdr-ftr-color: #8c1212; */
+  --body-color: hsl(36, 30%, 52%);
+  --container-color: hsl(36, 52%, 90%);
+  --hdr-ftr-color: hsl(35, 62%, 70%);
 }
 
 body {
@@ -24,7 +16,6 @@ body {
   color: #444;
   height: 100vh;
   background: var(--body-color);
-  /*   background: linear-gradient(to right, hsl(36, 20%, 80%), hsl(36, 20%, 60%), hsl(36, 20%, 80%)); */
   position: relative;
 }
 
@@ -67,7 +58,7 @@ body {
   display: flex;
   justify-content: center;
   background: var(--hdr-ftr-color);
-  color: hsl(36, 54%, 90%);
+  color: white;
   clip-path: polygon(0 0, 100% 0, 100% 100%, 50% 80%, 0 100%);
 }
 
@@ -76,12 +67,7 @@ body {
   width: 100%;
   max-width: 100vmin;
   font-size: 7.8vmin;
-/*   text-shadow: 0px -2px 2px hsl(36, 54%, 30%); */
   font-weight: bold;
-  
-  /*   color: #333; */
-/*     text-shadow: 0px 2px 20px rgba(0, 0, 0, 0.3); */
-  /*   color: var(--body-color); */
 }
 
 .container__hero {
@@ -94,7 +80,6 @@ body {
   width: 100%;
   height: 60vh;
   max-height: 90vw;
-  /*   width: 100%; */
   padding-bottom: 3%;
   overflow: hidden;
   clip-path: polygon(
@@ -142,7 +127,7 @@ body {
   height: 100%;
   display: flex;
   /*     opacity: 0.5; */
-      opacity: 0;
+  /* opacity: 0; */
 }
 
 #img-div img {
@@ -158,7 +143,7 @@ body {
   transition: filter 600ms ease-in-out, opacity 1000ms ease-in-out;
 }
 
-#img-div:hover .img-info {
+#img-div:hover .container__img-info {
   /*   background-color: green; */
   transform: translateY(100%);
   transition: transform 600ms ease-in-out;
