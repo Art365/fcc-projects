@@ -6,9 +6,14 @@
 
 :root {
   font-size: 16px;
-  --body-color: hsl(36, 30%, 52%);
+  /* --body-color: hsl(246, 30%, 25%); */
+  /* --body-color: #371A1E; */
+  --body-color: #AAA;
   --container-color: hsl(36, 52%, 90%);
-  --hdr-ftr-color: hsl(35, 62%, 70%);
+  /* --hdr-ftr-color: hsl(36, 52%, 78%); */
+  /* --hdr-ftr-color: rgb(120, 65, 65); */
+  /* --hdr-ftr-color: rgb(140, 74, 69); */
+  --hdr-ftr-color: rgb(130, 50, 46);
 }
 
 body {
@@ -27,7 +32,7 @@ body {
   width: 100%;
   min-width: 312px;
   padding: 0 3.2vmin;
-  max-width: 170vmin;
+  max-width: 160vmin;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -58,8 +63,8 @@ body {
   display: flex;
   justify-content: center;
   background: var(--hdr-ftr-color);
-  color: white;
-  clip-path: polygon(0 0, 100% 0, 100% 100%, 50% 80%, 0 100%);
+  color: var(--container-color);
+  clip-path: polygon(0 0, 100% 0, 100% 100%, 50% 78%, 0 100%);
 }
 
 .container__title {
@@ -126,28 +131,35 @@ body {
   width: 100%;
   height: 100%;
   display: flex;
+  justify-content: center;
   /*     opacity: 0.5; */
   /* opacity: 0; */
 }
 
 #img-div img {
   object-fit: cover;
-  max-height: 100%;
-  min-width: 100%;
+  height: 100%;
+  width: auto;
   transition: filter 600ms ease-in-out, opacity 1000ms ease-in-out;
 }
 
-#img-div:hover img {
+
+.fade-out {
   filter: blur(10px);
   opacity: 0;
   transition: filter 600ms ease-in-out, opacity 1000ms ease-in-out;
 }
 
-#img-div:hover .container__img-info {
-  /*   background-color: green; */
+/* #img-div:hover img {
+  filter: blur(10px);
+  opacity: 0;
+  transition: filter 600ms ease-in-out, opacity 1000ms ease-in-out;
+} */
+
+/* #img-div:hover .container__img-info {
   transform: translateY(100%);
   transition: transform 600ms ease-in-out;
-}
+} */
 
 .container__img-info {
   position: absolute;
@@ -155,14 +167,21 @@ body {
   left: 0;
   width: 100%;
   background-color: green;
-  opacity: 0.5;
-  height: 18%;
+  opacity: 0.6;
+  height: 22%;
   transition: transform 600ms ease-in-out;
 }
 
 #tribute-info {
   padding-top: 2vmin;
   padding-bottom: 31vh;
+}
+
+.container__img-info {
+  text-align: center;
+  font-size: calc(1rem + 0.6vmin);
+  padding: 1em;
+  color: white;
 }
 
 .container__quotes {
