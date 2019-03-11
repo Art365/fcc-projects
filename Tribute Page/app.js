@@ -6,7 +6,6 @@ window.onload = function() {
         randomInt = (x) => Math.round(Math.random() * x),
         randomInRange = (min, max) => min + Math.random() * (max - min);
   let porthole = document.getElementById("porthole"),
-      image = document.getElementById("image"),
       canvas = document.getElementById("c"),
       offCanvas = document.createElement("canvas"),
       ctx,
@@ -38,48 +37,71 @@ window.onload = function() {
     [
       "assets/images/sagan_in_front_of_planets.jpg 600w, assets/images/sagan_in_front_of_planets--large.jpg 1200w", 
       "Carl Sagan standing in front of planets.", 
-      `<p><cite>NASA JPL.</cite></p>
-
-      <p>Carl Sagan standing in front of planets.</p>`
+      `<p><span><cite>NASA JPL.</cite></span></p>
+      <br>
+      <p><span>Carl Sagan standing in front of planets.</span></p>`
     ],
     [
       "assets/images/planetary_society.jpg 976w, assets/images/planetary_society--large.jpg 1952w", 
       "Planetary Society.", 
-      `<p><s>NASA JPL. <i>Planetary Society.</i> , 1970s. Photograph.</s></p>
-
-      <p>Carl Sagan, Bruce Murray (seated right to left) and (standing) Louis Friedman (standing, right), 
+      `<p><span><cite>NASA JPL. <i>Planetary Society.</i> , 1970s. Photograph.</cite></span></p>
+      <br>
+      <p><span>Carl Sagan, Bruce Murray (seated right to left) and (standing) Louis Friedman (standing, right), 
       the founders of The Planetary Society at the time of signing the papers formally incorporating the organization. 
-      The fourth person is Harry Ashmore(standing, left), an advisor, who greatly helped in the founding of the Society.</p>`
+      The fourth person is Harry Ashmore(standing, left), an advisor, who greatly helped in the founding of the Society.</span></p>`
     ],
     [
       "assets/images/sagan_with_planets.jpg 572w, assets/images/sagan_with_planets--large.jpg 1144w", 
       "Carl Sagan on the set of Cosmos.", 
-      `<p><s>Castaneda, Eduardo. <i>Carl Sagan with the planets.</i> , 1981. Photograph. https://www.loc.gov/item/cosmos000104/.</s></p>
-      <p>Carl Sagan on the set of the television program Cosmos: A personal journey, standing among scale models of several 
-      planets in the solar system.</p>`
+      `<p><span><cite>Castaneda, Eduardo. <i>Carl Sagan with the planets.</i> , 1981. Photograph. https://www.loc.gov/item/cosmos000104/.</cite></span></p>
+      <br>
+      <p><span>Carl Sagan on the set of the television program Cosmos: A personal journey, standing among scale models of several 
+      planets in the solar system.</span></p>`
     ],
     ["assets/images/carl_pioneer.jpg 640w, assets/images/carl_pioneer--large.jpg 1280w", 
     "Carl Sagan holding one of the Pioneer plaques.", 
-    `Sagan, Carl. "A Message from Earth." Science Magazine, February 25, 1972.
-
-    Carl Sagan holding one of the Pioneer plaques he helped design. The plaques feature a few drawings and symbols 
+    `<p><span><cite>Sagan, Carl. "A Message from Earth." Science Magazine, February 25, 1972.</cite></span></p>
+    <br>
+    <p><span>Carl Sagan holding one of the Pioneer plaques he helped design. The plaques were 
     meant to communicate information about the origin of the spacecraft to potential intelligent extrasterrestrial interceptor.
-    The two plaques were placed on board the 1972 Pioneer 10 and 1973 Pioneer 11 spacecraft.`
+    The two plaques were placed on board the 1972 Pioneer 10 and 1973 Pioneer 11 spacecraft.</span></p>`
   ],
   ];
   
-  let count = 0;
+
+  // add event listener for resize
   window.addEventListener("resize", resizeCanvas, false);
-  image.addEventListener("click", function(e) {
-    let classList = e.target.classList;
-    classList.add("fade-out");
-    setTimeout(function() {
-      e.target.setAttribute("srcset", imagesOfCarl[count][0]);
-      e.target.setAttribute("alt", imagesOfCarl[count][1]);
-      classList.remove("fade-out")
-    }, 1000);
+
+  // add a sentinel value that turns off canvas drawing when images are being shown
+  let count = 0;
+  const image = document.getElementById("image");
+  const imageClassList = image.classList;
+  const imageCaption = document.getElementById("img-caption");
+  const imageCaptionClassList = imageCaption.classList;
+
+  setInterval(() => {
+    imageClassList.add("fade-out");
+    imageCaptionClassList.add("slide-out");
     count = (count + 1) % imagesOfCarl.length;
-  }, false);
+    setTimeout(() => {
+      image.setAttribute("srcset", imagesOfCarl[count][0]);
+      image.setAttribute("alt", imagesOfCarl[count][1]);
+      imageCaption.innerHTML = imagesOfCarl[count][2];
+      imageClassList.remove("fade-out");
+      imageCaptionClassList.remove("slide-out");
+    }, 1000);
+  }, 8000);
+
+  // image.addEventListener("click", function(e) {
+  //   let imageClassList = e.target.classList;
+  //   imageClassList.toggle("fade-out");
+  //   count = (count + 1) % imagesOfCarl.length;
+  //   setTimeout(function() {
+  //     e.target.setAttribute("srcset", imagesOfCarl[count][0]);
+  //     e.target.setAttribute("alt", imagesOfCarl[count][1]);
+  //     imageClassList.toggle("fade-out");
+  //   }, 800);
+  // }, false);
 
   class Star {
 	  constructor(x, y, r, distance, color) {
