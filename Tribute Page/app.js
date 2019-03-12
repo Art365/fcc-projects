@@ -18,7 +18,8 @@ window.onload = function() {
       maxStarRadius,
       maxDistance = 3000,
       speed = 1, 
-      stars;
+      stars, 
+      render = 0;
 
   const init = function() {
     ctx = canvas.getContext("2d", { alpha: false });
@@ -81,14 +82,16 @@ window.onload = function() {
 
   setInterval(() => {
     imageClassList.add("fade-out");
-    imageCaptionClassList.add("slide-out");
+    imageCaptionClassList.add("slide-off");
     count = (count + 1) % imagesOfCarl.length;
+    render = 1;
     setTimeout(() => {
       image.setAttribute("srcset", imagesOfCarl[count][0]);
       image.setAttribute("alt", imagesOfCarl[count][1]);
       imageCaption.innerHTML = imagesOfCarl[count][2];
       imageClassList.remove("fade-out");
-      imageCaptionClassList.remove("slide-out");
+      imageCaptionClassList.remove("slide-off");
+      setTimeout(() => render = 0, 1000);
     }, 1000);
   }, 8000);
 
@@ -165,13 +168,16 @@ window.onload = function() {
     offCtx.fillRect(0, 0, canvasWidth, canvasHeight);
 
     for (let i = 0, len = stars.length; i < len; i++) {
+      // if imageClassList
       stars[i].draw(offCtx);
       stars[i].update();
     }
     
-    ctx.save();
-    ctx.drawImage(offCanvas, 0, 0);
-    ctx.restore();
+    if (render) {
+      ctx.save();
+      ctx.drawImage(offCanvas, 0, 0);
+      ctx.restore();
+    }
     
     window.requestAnimationFrame(animate);
   }
