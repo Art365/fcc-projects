@@ -16,7 +16,7 @@ window.onload = function() {
       starCount,
       minStarRadius,
       maxStarRadius,
-      maxDistance = 3000,
+      maxDistance = 8000,
       speed = 1, 
       stars, 
       render = 0;
@@ -28,7 +28,7 @@ window.onload = function() {
     canvasHeight = canvas.height = offCanvas.height = porthole.offsetHeight;
     canvasCenter = { x: canvasWidth / 2, y: canvasHeight / 2};
     minStarRadius = 0.5;
-    maxStarRadius = minStarRadius * 5;
+    maxStarRadius = minStarRadius * 4;
     starCount = (canvasWidth + canvasHeight) / 2;
   };
       
@@ -38,34 +38,34 @@ window.onload = function() {
     [
       "assets/images/sagan_in_front_of_planets.jpg 600w, assets/images/sagan_in_front_of_planets--large.jpg 1200w", 
       "Carl Sagan standing in front of planets.", 
-      `<p><span><cite>NASA JPL.</cite></span></p>
+      `<p><cite>NASA JPL.</cite></p>
       <br>
-      <p><span>Carl Sagan standing in front of planets.</span></p>`
+      <p>Carl Sagan standing in front of planets.</p>`
     ],
     [
       "assets/images/planetary_society.jpg 976w, assets/images/planetary_society--large.jpg 1952w", 
       "Planetary Society.", 
-      `<p><span><cite>NASA JPL. <i>Planetary Society.</i> , 1970s. Photograph.</cite></span></p>
+      `<p><cite>NASA JPL. <i>Planetary Society.</i> , 1970s. Photograph.</cite></p>
       <br>
-      <p><span>Carl Sagan, Bruce Murray (seated right to left) and (standing) Louis Friedman (standing, right), 
+      <p>Carl Sagan, Bruce Murray (seated right to left) and (standing) Louis Friedman (standing, right), 
       the founders of The Planetary Society at the time of signing the papers formally incorporating the organization. 
       The fourth person is Harry Ashmore(standing, left), an advisor, who greatly helped in the founding of the Society.</span></p>`
     ],
     [
       "assets/images/sagan_with_planets.jpg 572w, assets/images/sagan_with_planets--large.jpg 1144w", 
       "Carl Sagan on the set of Cosmos.", 
-      `<p><span><cite>Castaneda, Eduardo. <i>Carl Sagan with the planets.</i> , 1981. Photograph. https://www.loc.gov/item/cosmos000104/.</cite></span></p>
+      `<p><cite>Castaneda, Eduardo. <i>Carl Sagan with the planets.</i> , 1981. Photograph. https://www.loc.gov/item/cosmos000104/.</cite></p>
       <br>
-      <p><span>Carl Sagan on the set of the television program Cosmos: A personal journey, standing among scale models of several 
-      planets in the solar system.</span></p>`
+      <p>Carl Sagan on the set of the television program Cosmos: A personal journey, standing among scale models of several 
+      planets in the solar system.</p>`
     ],
     ["assets/images/carl_pioneer.jpg 640w, assets/images/carl_pioneer--large.jpg 1280w", 
     "Carl Sagan holding one of the Pioneer plaques.", 
-    `<p><span><cite>Sagan, Carl. "A Message from Earth." Science Magazine, February 25, 1972.</cite></span></p>
+    `<p><cite>Sagan, Carl. "A Message from Earth." Science Magazine, February 25, 1972.</cite></p>
     <br>
-    <p><span>Carl Sagan holding one of the Pioneer plaques he helped design. The plaques were 
+    <p>Carl Sagan holding one of the Pioneer plaques he helped design. The plaques were 
     meant to communicate information about the origin of the spacecraft to potential intelligent extrasterrestrial interceptor.
-    The two plaques were placed on board the 1972 Pioneer 10 and 1973 Pioneer 11 spacecraft.</span></p>`
+    The two plaques were placed on board the 1972 Pioneer 10 and 1973 Pioneer 11 spacecraft.</p>`
   ],
   ];
   
@@ -80,15 +80,18 @@ window.onload = function() {
   const imageCaption = document.getElementById("img-caption");
   const imageCaptionClassList = imageCaption.classList;
 
+
+
+  // replace innerHTML with content replacemenet. that way, browser doesnt have to re-render new elemenets.
   setInterval(() => {
+    render = 1;
     imageClassList.add("fade-out");
     imageCaptionClassList.add("slide-off");
     count = (count + 1) % imagesOfCarl.length;
-    render = 1;
     setTimeout(() => {
       image.setAttribute("srcset", imagesOfCarl[count][0]);
       image.setAttribute("alt", imagesOfCarl[count][1]);
-      imageCaption.innerHTML = imagesOfCarl[count][2];
+      // imageCaption.innerHTML = imagesOfCarl[count][2];       // replace this! instead replace content.
       imageClassList.remove("fade-out");
       imageCaptionClassList.remove("slide-off");
       setTimeout(() => render = 0, 1000);
@@ -164,11 +167,13 @@ window.onload = function() {
   
 
   function animate() {
-    offCtx.fillStyle = BG_COLOR;
-    offCtx.fillRect(0, 0, canvasWidth, canvasHeight);
+    
+    if (render) {
+      offCtx.fillStyle = BG_COLOR;
+      offCtx.fillRect(0, 0, canvasWidth, canvasHeight);
+    }
 
     for (let i = 0, len = stars.length; i < len; i++) {
-      // if imageClassList
       stars[i].draw(offCtx);
       stars[i].update();
     }
