@@ -143,46 +143,29 @@ body {
 .fade-out {
   filter: blur(10px);
   opacity: 0;
-  transition: filter 600ms ease-in-out, opacity 1000ms ease-in-out;
+  transition: filter 600ms ease-in-out 100ms, opacity 1000ms ease-in-out 100ms;
 }
-
-
-/* .hero__img-info {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  width: 100%;
-  height: 50%;
-  background-color: green;
-  opacity: 0.6;
-  font-size: 2.2vmin;
-  padding: 2vmin 4vmin;
-  color: white;
-  transition: transform 600ms ease-in-out;
-} */
 
 .hero__img-info {
   position: absolute;
   bottom: 0;
   left: 0;
+  transform: translateY(100%);
   width: 100%;
   height: auto;
   background-color: black;
   opacity: 0.6;
   /* font-size: 3vmin; */
-  font-size: calc(0.5em + 0.4vw);
-  padding: 2vmin 6vmin 10vmin;
+  font-size: calc(0.5em + 0.42vmin);
+  padding: 2vmin 5vmin 10vmin;
   color: white;
-  transition: transform 400ms ease-out;
+  transition: transform 400ms ease-in;
 }
 
-/* .hero__img-info span {
-  background-color: black;
-} */
 
-.slide-off {
-  transform: translateY(100%);
-  transition: transform 400ms ease-in;
+.slide-out {
+  transform: translateY(0);
+  transition: transform 400ms ease-out;
 }
 
 .info {
