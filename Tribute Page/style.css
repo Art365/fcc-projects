@@ -8,7 +8,7 @@
   font-size: 16px;
   --body-color: #AAA;
   --container-color: hsl(36, 52%, 90%);
-  --hdr-ftr-color: rgb(130, 50, 46);
+  --hdr-ftr-color: rgb(46, 50, 130);
 }
 
 body {
@@ -132,19 +132,21 @@ body {
 }
 
 .hero__image {
+  position: absolute;
   object-fit: cover;
-  opacity: 0.5;
+  opacity: 0;
   height: 100%;
   width: auto;
+  filter: blur(10px);
   transition: filter 600ms ease-in-out, opacity 1000ms ease-in-out;
 }
 
-
-.fade-out {
-  filter: blur(10px);
-  opacity: 0;
-  transition: filter 600ms ease-in-out 100ms, opacity 1000ms ease-in-out 100ms;
+.hero__image--current {
+  opacity: 1;
+  filter: none;
+  transition: filter 600ms ease-in-out, opacity 1000ms ease-in-out;
 }
+
 
 .hero__img-info {
   position: absolute;
@@ -157,7 +159,7 @@ body {
   opacity: 0.6;
   /* font-size: 3vmin; */
   font-size: calc(0.5em + 0.42vmin);
-  padding: 2vmin 5vmin 10vmin;
+  padding: 2vmin 6vmin 10vmin;
   color: white;
   transition: transform 400ms ease-in;
 }

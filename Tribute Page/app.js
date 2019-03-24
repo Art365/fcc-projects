@@ -1,7 +1,6 @@
 window.onload = function() {
   "use strict";
 
-
   const BG_COLOR = "black",
         randomInt = (x) => Math.round(Math.random() * x),
         randomInRange = (min, max) => min + Math.random() * (max - min);
@@ -21,7 +20,7 @@ window.onload = function() {
       stars, 
       render = 0;
 
-  const init = function() {
+  const initCanvas = function() {
     ctx = canvas.getContext("2d", { alpha: false });
     offCtx = offCanvas.getContext("2d", { alpha: false });
     canvasWidth = canvas.width = offCanvas.width = porthole.offsetWidth;
@@ -32,67 +31,55 @@ window.onload = function() {
     starCount = (canvasWidth + canvasHeight) / 2;
   };
       
-  init();
+  initCanvas();
   
 
 
-  
+
+
+
 function updateHero() {
+
   render = 1;
-  updateHero.prototype.imageClassList.add("fade-out");
-  updateHero.prototype.imageCaptionClassList.remove("slide-out");
-  setTimeout(function(e) {
-    updateHero.prototype.showNextSlide();
-  }, 1000);
-}
-
-updateHero.prototype = {
-  index: 0,
-  image: document.getElementById("image"),
-  imageClassList: document.getElementById("image").classList,
-  imageCaption: document.getElementById("img-caption"),
-  imageCaptionClassList: document.getElementById("img-caption").classList,
-  citation: document.getElementById("hero-citation"),
-  description: document.getElementById("hero-description"),
-
-  heroImages: [
+  updateHero.index = updateHero.index || 0;
+  const images = document.getElementsByClassName("hero__image");
+  const imageCaption = document.getElementById("img-caption");
+  const citation = document.getElementById("hero-citation");
+  const description = document.getElementById("hero-description");
+  const imageCaptions = [
     {
-      srcset: "assets/images/sagan_in_front_of_planets.jpg 600w, assets/images/sagan_in_front_of_planets--large.jpg 1200w", 
-      alt: "Carl Sagan standing in front of planets.", 
       citation: "NASA JPL.",
       description: "Carl Sagan standing in front of planets."
     },
     {
-      srcset: "assets/images/planetary_society.jpg 976w, assets/images/planetary_society--large.jpg 1952w", 
-      alt: "Planetary Society.", 
       citation: "NASA JPL. Planetary Society. , 1970s. Photograph.",
       description: "Carl Sagan, Bruce Murray (seated right to left) and (standing) Louis Friedman (standing, right), the founders of The Planetary Society at the time of signing the papers formally incorporating the organization. The fourth person is Harry Ashmore(standing, left), an advisor, who greatly helped in the founding of the Society."
     },
     {
-      srcset: "assets/images/sagan_with_planets.jpg 572w, assets/images/sagan_with_planets--large.jpg 1144w", 
-      alt: "Carl Sagan on the set of Cosmos.", 
       citation: "Castaneda, Eduardo. Carl Sagan with the planets. , 1981. Photograph. https://www.loc.gov/item/cosmos000104/.",
       description: "Carl Sagan on the set of the television program Cosmos: A personal journey, standing among scale models of several planets in the solar system."
     },
     {
-      srcset: "assets/images/carl_pioneer.jpg 640w, assets/images/carl_pioneer--large.jpg 1280w", 
-      alt: "Carl Sagan holding one of the Pioneer plaques.", 
       citation: "Sagan, Carl. \"A Message from Earth.\" Science Magazine, February 25, 1972.",
       description: "Carl Sagan holding one of the Pioneer plaques he helped design. The plaques were meant to communicate information about the origin of the spacecraft to potential intelligent extrasterrestrial interceptor. The two plaques were placed on board the 1972 Pioneer 10 and 1973 Pioneer 11 spacecraft."
     },
-  ],
+  ];
 
-  showNextSlide: function() {
-    "use strict"
-    updateHero.prototype.index = (updateHero.prototype.index + 1) % updateHero.prototype.heroImages.length;
-    updateHero.prototype.image.setAttribute("srcset", updateHero.prototype.heroImages[updateHero.prototype.index].srcset);
-    updateHero.prototype.image.setAttribute("alt", updateHero.prototype.heroImages[updateHero.prototype.index].alt);
-    updateHero.prototype.citation.textContent = updateHero.prototype.heroImages[updateHero.prototype.index].citation; 
-    updateHero.prototype.description.textContent = updateHero.prototype.heroImages[updateHero.prototype.index].description;
-    updateHero.prototype.imageClassList.remove("fade-out");
-    updateHero.prototype.imageCaptionClassList.add("slide-out");
-    render = 0;
+  images[updateHero.index].classList.remove("hero__image--current");
+  imageCaption.classList.remove("slide-out");
+  updateHero.index = (updateHero.index + 1) % imageCaptions.length;
+
+  const showNext = () => {
+    citation.textContent = imageCaptions[updateHero.index].citation; 
+    description.textContent = imageCaptions[updateHero.index].description;
+    images[updateHero.index].classList.add("hero__image--current");
+    imageCaption.classList.add("slide-out");
+    setTimeout(() => render = 0, 1000);
   }
+
+  setTimeout(showNext, 1000);
+
+  // return index;
 }
 
 
@@ -101,15 +88,15 @@ updateHero.prototype = {
   window.addEventListener("resize", resizeCanvas, false);
 
   
-  setInterval(updateHero, 10000);
+  setInterval(updateHero, 18000);
 
   // image.addEventListener("click", function(e) {
   //   let imageClassList = e.target.classList;
   //   imageClassList.toggle("fade-out");
-  //   count = (count + 1) % heroImages.length;
+  //   count = (count + 1) % imageCaptions.length;
   //   setTimeout(function() {
-  //     e.target.setAttribute("srcset", heroImages[count][0]);
-  //     e.target.setAttribute("alt", heroImages[count][1]);
+  //     e.target.setAttribute("srcset", imageCaptions[count][0]);
+  //     e.target.setAttribute("alt", imageCaptions[count][1]);
   //     imageClassList.toggle("fade-out");
   //   }, 800);
   // }, false);
@@ -166,7 +153,7 @@ updateHero.prototype = {
   stars = createStars(starCount);
 
   function resizeCanvas() {
-    init();
+    initCanvas();
     stars = createStars(starCount);
   }
   
