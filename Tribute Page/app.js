@@ -4,7 +4,7 @@ window.onload = function() {
   const BG_COLOR = "black",
         randomInt = (x) => Math.round(Math.random() * x),
         randomInRange = (min, max) => min + Math.random() * (max - min);
-  let porthole = document.getElementById("porthole"),
+  let hero = document.getElementById("hero"),
       canvas = document.getElementById("c"),
       offCanvas = document.createElement("canvas"),
       ctx,
@@ -23,8 +23,8 @@ window.onload = function() {
   const initCanvas = function() {
     ctx = canvas.getContext("2d", { alpha: false });
     offCtx = offCanvas.getContext("2d", { alpha: false });
-    canvasWidth = canvas.width = offCanvas.width = porthole.offsetWidth;
-    canvasHeight = canvas.height = offCanvas.height = porthole.offsetHeight;
+    canvasWidth = canvas.width = offCanvas.width = hero.offsetWidth;
+    canvasHeight = canvas.height = offCanvas.height = hero.offsetHeight;
     canvasCenter = { x: canvasWidth / 2, y: canvasHeight / 2};
     minStarRadius = 0.5;
     maxStarRadius = minStarRadius * 4;

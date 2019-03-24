@@ -33,10 +33,10 @@ body {
   align-items: center;
   background: var(--container-color);
   clip-path: polygon(
-    calc(50% + 53.2vmin) 0%,
+    calc(50% + 50vmin) 0%,
     100% 100%,
     0% 100%,
-    calc(50% - 53.2vmin) 0%
+    calc(50% - 50vmin) 0%
   );
   overflow: visible;
 }
@@ -49,7 +49,7 @@ body {
 .header {
   font-family: 'Josefin Sans', sans-serif;
   position: absolute;
-  padding: 0 3.2vmin;
+  /* padding: 0 3.2vmin; */
   margin: 0;
   width: 100%;
   max-width: none;
@@ -63,7 +63,7 @@ body {
 }
 
 .header__title {
-  padding-top: 5.7vmin;
+  padding: 5.7vmin 3.2vmin;
   width: 100%;
   max-width: 100vmin;
   font-size: 7.8vmin;
@@ -76,41 +76,24 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: hsl(36, 54%, 90%);
+  background-color: red;
   width: 100%;
+  max-width: 93.6vmin;
   height: 60vh;
   max-height: 90vw;
-  padding-bottom: 3%;
   overflow: hidden;
   clip-path: polygon(
     50% 0,
     calc(102% - 2vw) 10%,
     100% 50%,
-    calc(103% - 2.75vw) 100%,
-    calc(-3% + 2.75vw) 100%,
+    calc(103% - 2.75vw) 90%,
+    50% 100%,
+    calc(-3% + 2.75vw) 90%,
     0 50%,
     calc(-2% + 2vw) 10%
   );
 }
 
-.hero__porthole {
-  background-color: green;
-  position: absolute;
-  top: 0;
-  margin: auto;
-  height: 97%;
-  width: 100%;
-  clip-path: polygon(
-    50% 0,
-    calc(102% - 2vw) 10%,
-    100% 51%,
-    calc(102% - 2vw) 90%,
-    50% 100%,
-    calc(-2% + 2vw) 90%,
-    0 51%,
-    calc(-2% + 2vw) 10%
-  );
-}
 
 #c {
   position: absolute;
@@ -137,16 +120,13 @@ body {
   opacity: 0;
   height: 100%;
   width: auto;
-  filter: blur(10px);
-  transition: filter 600ms ease-in-out, opacity 1000ms ease-in-out;
+  transition: opacity 1000ms ease-in-out;
 }
 
 .hero__image--current {
   opacity: 1;
-  filter: none;
-  transition: filter 600ms ease-in-out, opacity 1000ms ease-in-out;
+  transition: opacity 1000ms ease-in-out;
 }
-
 
 .hero__img-info {
   position: absolute;
@@ -157,7 +137,6 @@ body {
   height: auto;
   background-color: black;
   opacity: 0.6;
-  /* font-size: 3vmin; */
   font-size: calc(0.5em + 0.42vmin);
   padding: 2vmin 6vmin 10vmin;
   color: white;
@@ -174,13 +153,6 @@ body {
   padding-top: 2vmin;
   padding-bottom: 31vh;
 }
-
-/* .hero__img-info {
-  text-align: center;
-  font-size: calc(1rem + 0.3vmin);
-  padding: 1em;
-  color: white;
-} */
 
 .info__quotes {
   width: 100%;
