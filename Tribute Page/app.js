@@ -3,9 +3,9 @@ window.onload = function() {
 
   const BG_COLOR = "black",
         randomInt = (x) => Math.round(Math.random() * x),
-        randomInRange = (min, max) => min + Math.random() * (max - min);
-  let hero = document.getElementById("hero"),
-      canvas = document.getElementById("c"),
+        randomInRange = (min, max) => min + Math.random() * (max - min),
+        hero = document.getElementById("hero");
+  let canvas = document.getElementById("c"),
       offCanvas = document.createElement("canvas"),
       ctx,
       offCtx,
