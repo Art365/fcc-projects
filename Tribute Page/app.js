@@ -40,8 +40,13 @@ window.onload = function() {
 
 function updateHero() {
 
+  // set render value so that stars get drawn while hero images switch
   render = 1;
+  // if function has ran before, index will be defined, and if not it will be set to 0
   updateHero.index = updateHero.index || 0;
+  // if function has ran before, render timeout should be cleared
+  clearTimeout(updateHero.renderTimeout);
+
   const images = document.getElementsByClassName("hero__image");
   const imageCaption = document.getElementById("img-caption");
   const citation = document.getElementById("hero-citation");
@@ -53,8 +58,8 @@ function updateHero() {
     },
     {
       citation: "NASA JPL. Planetary Society. , 1970s. Photograph.",
-      description: "Carl Sagan, Bruce Murray (seated right to left) and (standing) Louis Friedman (standing, right), the founders of The Planetary Society at the time of signing the papers formally incorporating the organization. The fourth person is Harry Ashmore(standing, left), an advisor, who greatly helped in the founding of the Society."
-    },
+      description: "Carl Sagan, Bruce Murray (seated right to left) and (standing) Louis Friedman (standing, right), the founders of The Planetary Society at the time of signing the papers formally incorporating the organization. The fourth person is Harry Ashmore (standing, left), an advisor, who greatly helped in the founding of the Society."
+    }, 
     {
       citation: "Castaneda, Eduardo. Carl Sagan with the planets. , 1981. Photograph. https://www.loc.gov/item/cosmos000104/.",
       description: "Carl Sagan on the set of the television program Cosmos: A personal journey, standing among scale models of several planets in the solar system."
@@ -74,12 +79,11 @@ function updateHero() {
     description.textContent = imageCaptions[updateHero.index].description;
     images[updateHero.index].classList.add("hero__image--current");
     imageCaption.classList.add("slide-out");
-    setTimeout(() => render = 0, 1000);
+    updateHero.renderTimeout = setTimeout(() => render = 0, 1000);
   }
 
   setTimeout(showNext, 1000);
 
-  // return index;
 }
 
 
@@ -87,19 +91,17 @@ function updateHero() {
   // add event listener for resize
   window.addEventListener("resize", resizeCanvas, false);
 
-  
-  setInterval(updateHero, 18000);
+  // create interval for automatically changing hero pictures
+  let interval = setInterval(updateHero, 20000);
 
-  // image.addEventListener("click", function(e) {
-  //   let imageClassList = e.target.classList;
-  //   imageClassList.toggle("fade-out");
-  //   count = (count + 1) % imageCaptions.length;
-  //   setTimeout(function() {
-  //     e.target.setAttribute("srcset", imageCaptions[count][0]);
-  //     e.target.setAttribute("alt", imageCaptions[count][1]);
-  //     imageClassList.toggle("fade-out");
-  //   }, 800);
-  // }, false);
+  // add a click listener to hero, and reset the interval if user clicks.
+  hero.addEventListener("click", () => {
+    updateHero();
+    clearInterval(interval);
+    interval = setInterval(updateHero, 20000);
+  }, false);
+
+
 
   class Star {
 	  constructor(x, y, r, distance, color) {
@@ -163,17 +165,19 @@ function updateHero() {
     if (render) {
       offCtx.fillStyle = BG_COLOR;
       offCtx.fillRect(0, 0, canvasWidth, canvasHeight);
-    }
 
-    for (let i = 0, len = stars.length; i < len; i++) {
-      stars[i].draw(offCtx);
-      stars[i].update();
-    }
-    
-    if (render) {
+      for (let i = 0, len = stars.length; i < len; i++) {
+        stars[i].draw(offCtx);
+        stars[i].update();
+      }
+
       ctx.save();
       ctx.drawImage(offCanvas, 0, 0);
       ctx.restore();
+    } else {
+      for (let i = 0, len = stars.length; i < len; i++) {
+        stars[i].update();
+      }
     }
     
     window.requestAnimationFrame(animate);

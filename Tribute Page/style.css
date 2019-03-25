@@ -76,7 +76,7 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: red;
+  /* background-color: red; */
   width: 100%;
   max-width: 93.6vmin;
   height: 60vh;
@@ -86,12 +86,16 @@ body {
     50% 0,
     calc(102% - 2vw) 10%,
     100% 50%,
-    calc(103% - 2.75vw) 90%,
+    calc(102% - 2vw) 90%,
     50% 100%,
-    calc(-3% + 2.75vw) 90%,
+    calc(-2% + 2vw) 90%,
     0 50%,
     calc(-2% + 2vw) 10%
   );
+}
+
+.hero:hover {
+  cursor: pointer;
 }
 
 
