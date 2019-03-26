@@ -6,7 +6,7 @@ window.onload = function() {
         randomInRange = (min, max) => min + Math.random() * (max - min),
         hero = document.getElementById("hero");
   let canvas = document.getElementById("c"),
-      offCanvas = document.createElement("canvas"),
+      offCanvas = new OffscreenCanvas(256, 256),
       ctx,
       offCtx,
       canvasWidth,
@@ -42,9 +42,9 @@ function updateHero() {
 
   // set render value so that stars get drawn while hero images switch
   render = 1;
-  // if function has ran before, index will be defined, and if not it will be set to 0
+  // if this function ran before then index will be defined, and if not it will initialized to 0
   updateHero.index = updateHero.index || 0;
-  // if function has ran before, render timeout should be cleared
+  // if this function ran before, render timeout should be cleared
   clearTimeout(updateHero.renderTimeout);
 
   const images = document.getElementsByClassName("hero__image");
