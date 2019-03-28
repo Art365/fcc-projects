@@ -9,11 +9,11 @@
   --body-color: #AAA;
   --container-color: hsl(36, 52%, 90%);
   --hdr-ftr-color: rgb(60, 75, 170);
-  /* --hdr-ftr-color: rgb(46, 50, 130); */
+  --main-red: #A00;
 }
 
 body {
-  font-family: Arial;
+  font-family: Arial, Helvetica, sans-serif;
   color: #444;
   height: 100vh;
   background: var(--body-color);
@@ -69,14 +69,28 @@ body {
   font-weight: bold;
 }
 
-.header__comet {
+/* .header__comet {
   margin-top: 8.6vmin;
   position: absolute;
-  border-radius: 0 2.1vmin 2.1vmin 0;
-  border-right: 70vmin solid #A00;
-  border-top: 2.1vmin solid transparent;
-  border-bottom: 2.1vmin solid transparent; 
+  height: 0;
+  width: 0;
+  border-radius: 0 2.2vmin 2.2vmin 0;
+  border-right: 70vmin solid var(--main-red);
+  border-top: 2.2vmin solid transparent;
+  border-bottom: 2.2vmin solid transparent; 
   transform: skew(9deg, -9deg);
+  z-index: -1;
+} */
+
+.header__comet {
+  position: absolute;
+  margin-top: 8.7vmin;
+  background-color: var(--main-red);
+  clip-path: polygon(101% 104%, 0 50%, 101% -4%);
+  height: 4vmin;
+  width: 70vmin;
+  border-radius: 0 2vmin 2vmin 0;
+  transform: rotate(-9deg) translateX(-5%);
   z-index: -1;
 }
 
@@ -105,7 +119,6 @@ body {
 .hero:hover {
   cursor: pointer;
 }
-
 
 #c {
   position: absolute;
@@ -148,7 +161,7 @@ body {
   background-color: rgb(60, 75, 170);
   opacity: 0.7;
   font-size: calc(0.5em + 0.42vmin);
-  padding: 2vmin 6vmin 10vmin;
+  padding: 2vmin 6.6vmin 10vmin;
   color: white;
   transition: transform 400ms ease-in;
 }
@@ -162,18 +175,28 @@ body {
 .info {
   padding-top: 2vmin;
   padding-bottom: 31vh;
-}
-
-.info__quotes {
   width: 100%;
-  background-color: white;
-  padding: 1em;
-  border-radius: 2vmin;
-  margin-bottom: 2vmin;
 }
 
 .info__quote {
+  width: 100%;
+  background-color: white;
   font-style: italic;
+  color: #777;
+  padding: 1em;
+  /* border-radius: 2vmin; */
+  margin-bottom: 2vmin;
+}
+
+.info__quote > q {
+  display: block;
+  padding-left: 10px;
+  border-left: 4px solid var(--main-red);
+}
+
+
+.info__block {
+  
 }
 
 .footer {
