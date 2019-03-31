@@ -7,29 +7,38 @@
 :root {
   font-size: 16px;
   --body-color: #AAA;
-  --container-color: hsl(36, 52%, 90%);
+  /* --container-color: hsl(36, 52%, 88%); */
+  --container-color: red;
   --hdr-ftr-color: rgb(60, 75, 170);
-  --main-red: #A00;
+  --main-red: #D00;
 }
 
 body {
   font-family: Arial, Helvetica, sans-serif;
   color: #444;
-  height: 100vh;
+  /* height: 100vh; */
+  /* width: calc(100vw - (100vw - 100%)); */
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  /* padding-left: 5vmin; */
+  /* padding-right: 5vmin; */
+  /* overflow: visible; */
   background: var(--body-color);
-  position: relative;
+  /* position: relative; */
 }
 
 .container {
   position: absolute;
-  margin: 0 50%;
+  /* margin: 0 50%; */
   font-size: calc(1rem + 1vmin);
-  transform: translateX(-50%);
+  /* transform: translateX(-50%); */
   width: 100%;
   min-width: 312px;
   max-width: 160vmin;
-  padding: 0 3.2vmin;
   display: flex;
+  /* padding-left: 5vmin; */
+  /* padding-right: 5vmin; */
   flex-direction: column;
   align-items: center;
   background: var(--container-color);
@@ -42,15 +51,15 @@ body {
 }
 
 .container > * {
-  width: 100%;
-  max-width: 100vmin;
+  width: 92%;
+  max-width: 92vmin;
 }
 
 .header {
-  font-family: 'Josefin Sans', sans-serif;
+  /* font-family: 'Josefin Sans', sans-serif; */
   position: absolute;
+  width: 100%;
   margin: 0;
-  /* width: 100%; */
   max-width: none;
   height: 55vh;
   max-height: 60vw;
@@ -62,35 +71,22 @@ body {
 }
 
 .header__title {
-  padding: 6vmin 3.2vmin;
-  width: 100%;
-  max-width: 100vmin;
+  padding-top: 6vmin;
+  width: 92%;
+  max-width: 92vmin;
   font-size: 7.8vmin;
   font-weight: bold;
 }
 
-/* .header__comet {
-  margin-top: 8.6vmin;
-  position: absolute;
-  height: 0;
-  width: 0;
-  border-radius: 0 2.2vmin 2.2vmin 0;
-  border-right: 70vmin solid var(--main-red);
-  border-top: 2.2vmin solid transparent;
-  border-bottom: 2.2vmin solid transparent; 
-  transform: skew(9deg, -9deg);
-  z-index: -1;
-} */
-
 .header__comet {
   position: absolute;
-  margin-top: 8.7vmin;
+  margin-top: 8.8vmin;
   background-color: var(--main-red);
   clip-path: polygon(101% 104%, 0 50%, 101% -4%);
   height: 4vmin;
-  width: 70vmin;
+  width: 65vmin;
   border-radius: 0 2vmin 2vmin 0;
-  transform: rotate(-9deg) translateX(-5%);
+  transform: rotate(-10deg) translateX(-5%);
   z-index: -1;
 }
 
@@ -100,7 +96,7 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  max-width: 93.6vmin;
+  /* max-width: 90vmin; */
   height: 60vh;
   max-height: 90vw;
   overflow: hidden;
@@ -120,7 +116,7 @@ body {
   cursor: pointer;
 }
 
-#c {
+.hero__canvas {
   position: absolute;
   margin: auto;
   top: 0;
@@ -173,34 +169,54 @@ body {
 }
 
 .info {
-  padding-top: 2vmin;
-  padding-bottom: 31vh;
+  background-color: blue;
+  position: relative;
   width: 100%;
+  /* max-width: 96vmin; */
+  max-width: 100vmin;
+  /* width: 100%; */
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  /* align-items: space-around; */
+  padding: 2vmin 2vmin 31vh;
 }
 
-.info__quote {
-  width: 100%;
+.info__block {
+  /* border: 0; */
+  margin: 2vmin;
   background-color: white;
+  /* flex: 0 1 47.75%; */
+  /* flex: 1 1 47.75%; */
+  flex: 1 1 44vmin;
+  min-width: 312px;
+  /* max-width: 44vmin; */
+  /* margin: 2.5vmin; */
+  padding: 3vmin;
+  /* max-width: 48%; */
+  /* width: 42.5vmin; */
+}
+
+.info__block--quote {
+  /* min-width: 100%; */
+  width: 100%;
+  max-width: none;
   font-style: italic;
   color: #777;
-  padding: 1em;
-  /* border-radius: 2vmin; */
-  margin-bottom: 2vmin;
+  /* padding: 4vmin; */
 }
 
-.info__quote > q {
+.info__block--quote > q {
   display: block;
-  padding-left: 10px;
+  padding-left: 2vmin;
   border-left: 4px solid var(--main-red);
 }
 
 
-.info__block {
-  
-}
-
 .footer {
   position: absolute;
+  display: flex;
+  justify-content: center;
   bottom: 0;
   width: 100%;
   max-width: none;
@@ -209,6 +225,13 @@ body {
   max-height: 90vw;
   background: var(--hdr-ftr-color);
   clip-path: polygon(50% 20%, 100% 0, 100% 100%, 0 100%, 0 0);
+}
+
+.footer > * {
+  height: 100px;
+  width: 100vmin;
+  /* max-width: 90vmin; */
+  background-color: yellow;
 }
 
 
