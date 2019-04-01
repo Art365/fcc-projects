@@ -7,8 +7,8 @@
 :root {
   font-size: 16px;
   --body-color: #AAA;
-  /* --container-color: hsl(36, 52%, 88%); */
-  --container-color: red;
+  --container-color: hsl(36, 52%, 88%);
+  /* --container-color: red; */
   --hdr-ftr-color: rgb(60, 75, 170);
   --main-red: #D00;
 }
@@ -19,20 +19,22 @@ body {
   /* height: 100vh; */
   /* width: calc(100vw - (100vw - 100%)); */
   width: 100%;
-  display: flex;
-  justify-content: center;
+  /* display: flex; */
+  /* justify-content: center; */
+  /* margin-right: 100%; */
+  /* transform: translateX(-25%); */
   /* padding-left: 5vmin; */
   /* padding-right: 5vmin; */
   /* overflow: visible; */
   background: var(--body-color);
-  /* position: relative; */
+  position: relative;
 }
 
 .container {
   position: absolute;
-  /* margin: 0 50%; */
+  margin: 0 50%;
   font-size: calc(1rem + 1vmin);
-  /* transform: translateX(-50%); */
+  transform: translateX(-50%);
   width: 100%;
   min-width: 312px;
   max-width: 160vmin;
@@ -169,41 +171,34 @@ body {
 }
 
 .info {
-  background-color: blue;
+  /* background-color: blue; */
   position: relative;
   width: 100%;
-  /* max-width: 96vmin; */
   max-width: 100vmin;
-  /* width: 100%; */
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-between;
+  /* justify-content: space-between; */
   /* align-items: space-around; */
   padding: 2vmin 2vmin 31vh;
 }
 
 .info__block {
-  /* border: 0; */
   margin: 2vmin;
   background-color: white;
-  /* flex: 0 1 47.75%; */
-  /* flex: 1 1 47.75%; */
-  flex: 1 1 44vmin;
-  min-width: 312px;
-  /* max-width: 44vmin; */
-  /* margin: 2.5vmin; */
+  /* flex: 1 1 44vmin; */
+  flex: 1 1 40vh;
+  /* flex: 1 1 auto; */
+  /* width: 44vmin; */
+  /* width: 30vw; */
+  /* max-width: 30vw; */
+  /* max-width: 90vmin; */
   padding: 3vmin;
-  /* max-width: 48%; */
-  /* width: 42.5vmin; */
 }
 
 .info__block--quote {
-  /* min-width: 100%; */
-  width: 100%;
-  max-width: none;
+  flex-basis: 100%;
   font-style: italic;
   color: #777;
-  /* padding: 4vmin; */
 }
 
 .info__block--quote > q {
