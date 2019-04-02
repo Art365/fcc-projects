@@ -16,16 +16,7 @@
 body {
   font-family: Arial, Helvetica, sans-serif;
   color: #444;
-  /* height: 100vh; */
-  /* width: calc(100vw - (100vw - 100%)); */
   width: 100%;
-  /* display: flex; */
-  /* justify-content: center; */
-  /* margin-right: 100%; */
-  /* transform: translateX(-25%); */
-  /* padding-left: 5vmin; */
-  /* padding-right: 5vmin; */
-  /* overflow: visible; */
   background: var(--body-color);
   position: relative;
 }
@@ -33,14 +24,12 @@ body {
 .container {
   position: absolute;
   margin: 0 50%;
-  font-size: calc(1rem + 1vmin);
   transform: translateX(-50%);
+  font-size: calc(1rem + 1vmin);
   width: 100%;
   min-width: 312px;
   max-width: 160vmin;
   display: flex;
-  /* padding-left: 5vmin; */
-  /* padding-right: 5vmin; */
   flex-direction: column;
   align-items: center;
   background: var(--container-color);
@@ -158,8 +147,9 @@ body {
   height: auto;
   background-color: rgb(60, 75, 170);
   opacity: 0.7;
-  font-size: calc(0.5em + 0.42vmin);
-  padding: 2vmin 6.6vmin 10vmin;
+  font-size: calc(0.46em + 0.66vmin);
+  /* padding: 2vmin 6.6vmin 11%; */
+  padding: 2vmin 6.6vmin calc(2.6em + 3.8vmin);
   color: white;
   transition: transform 400ms ease-in;
 }
@@ -186,7 +176,8 @@ body {
   margin: 2vmin;
   background-color: white;
   /* flex: 1 1 44vmin; */
-  flex: 1 1 40vh;
+  /* flex: 1 1 40vh; */
+  flex: 1 1 44vh;
   /* flex: 1 1 auto; */
   /* width: 44vmin; */
   /* width: 30vw; */
@@ -210,23 +201,32 @@ body {
 
 .footer {
   position: absolute;
-  display: flex;
-  justify-content: center;
   bottom: 0;
   width: 100%;
   max-width: none;
-  /*   margin: 0; */
   height: 30vh;
-  max-height: 90vw;
+  padding-top: 6vh;
+  /* padding-left: 4vmin; */
+  display: grid;
+  grid-template-columns: 46vmin 46vmin;
+  justify-content: center;
+  align-items: center;
   background: var(--hdr-ftr-color);
   clip-path: polygon(50% 20%, 100% 0, 100% 100%, 0 100%, 0 0);
 }
 
-.footer > * {
-  height: 100px;
-  width: 100vmin;
-  /* max-width: 90vmin; */
-  background-color: yellow;
+.footer__content {
+  color: white;
+}
+
+.footer__content--copyright {
+  justify-self: start;
+  list-style: none;
+}
+
+.footer__content--contact {
+  justify-self: end;
+  list-style: none;
 }
 
 
