@@ -4,9 +4,9 @@ window.onload = function() {
   const BG_COLOR = "black",
         randomInt = (x) => Math.round(Math.random() * x),
         randomInRange = (min, max) => min + Math.random() * (max - min),
-        hero = document.getElementById("hero");
-  let canvas = document.getElementById("c"),
-      offCanvas = new OffscreenCanvas(256, 256),
+        hero = document.getElementById("hero"),
+        canvas = document.getElementById("c");
+  let offCanvas = new OffscreenCanvas(256, 256),
       ctx,
       offCtx,
       canvasWidth,
@@ -36,7 +36,7 @@ window.onload = function() {
 
 
 
-
+// this function changes hero images and their descriptions
 
 function updateHero() {
 
