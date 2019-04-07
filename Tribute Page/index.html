@@ -6,6 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <link rel="stylesheet" href="style.css">
+  <link href="https://fonts.googleapis.com/css?family=Arimo|Roboto" rel="stylesheet">
   <title>Tribute Page - Carl Sagan</title>
 </head>
 
@@ -55,7 +56,7 @@
           alt="Carl Sagan holding one of the Pioneer plaques." class="hero__image">
 
         <div class="hero__img-info slide-out" id="img-caption">
-          <p><cite id="hero-citation">NASA JPL.</cite></p>
+          <p>Source: <cite id="hero-citation">NASA JPL.</cite></p>
           <br>
           <p id="hero-description">Carl Sagan standing in front of planets.</p>
         </div>
@@ -67,18 +68,22 @@
         <q>The nitrogen in our DNA, the calcium in our teeth, the iron in our blood, the carbon in our apple pies were
           made in the interiors of collapsing stars. We are made of starstuff.</q>
       </p>
-      <p class="info__block">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent eu est ut nulla ultricies
-        ultricies quis et purus. Donec et tristique magna, non pulvinar turpis. Integer sodales mattis aliquet. Quisque
-        faucibus et dolor eget luctus. Integer leo risus, efficitur nec facilisis vel, varius fermentum nisl. Etiam
-        commodo eu sem accumsan condimentum. Nulla elementum sollicitudin urna, eget accumsan sem efficitur at. Nunc
-        augue mauris, aliquet nec venenatis vitae, ullamcorper porta lectus. Phasellus a enim id lorem fringilla
-        tincidunt. Nullam tincidunt accumsan congue. Cras interdum ac velit dictum ornare. Nam commodo, magna ut finibus
-        aliquam, quam ex vulputate neque, non elementum nisi velit eget odio.</p>
+      <p class="info__block">Carl Edward Sagan was an American astronomer, cosmologist, astrophysicist, astrobiologist, author, science popularizer, and science communicator. Sagan published over 600 scientific papers and articles and was an author or contributor of more than 20 books. Some of his best-known books include Cosmos, The Demon-Haunted World, The Dragons of Eden, and Pale Blue Dot. Sagan also co-wrote and narrated the award-winning 1980 television series Cosmos: A Personal Voyage, which is the most widely watched series in the history of American public television. Sagan advocated scientific skeptical inquiry and the scientific method, pioneered exobiology and promoted the Search for Extra-Terrestrial Intelligence (SETI).</p>
 
-      <p class="info__block">Vivamus tempus, augue ac imperdiet imperdiet, nisl leo luctus nisl, at ornare massa velit a
-        tortor. Sed rhoncus tincidunt lorem, eget dictum quam euismod in. Aenean gravida dui a dui molestie varius.
-        Vivamus sed orci est. Praesent eget sollicitudin quam. Suspendisse rhoncus dui ac nunc semper congue. Donec
-        ornare ultricies libero non iaculis. Morbi in risus nisi.</p>
+      <div class="info__block">
+        <img
+        srcset="assets/images/sounds_of_earth.jpg 500w, assets/images/sounds_of_earth--medium.jpg 1000w, assets/images/sounds_of_earth--large.jpg 1500w"
+        alt="The Sounds of Earth golden record." class="info__image">
+        <p class="info__citation">Source: NASA JPL. <cite><i>The Sounds of Earth</i></cite></p>
+        <p>The golden record shown above was assembled by Sagan and was later launched into space aboard the Voyager spacecraft. It contains greetings in 60 languages, samples of music from different cultures and eras, and natural and man-made sounds from Earth; messages that could potentially be understood by intelligent extraterrestrials should they ever find them.</p>
+      </div>
+
+      <div class="info__block">
+
+          <p class="info__citation">Source: NASA JPL. <cite><i>Pale Blue Dot</i></cite></p>
+          <p>Photo of Earth taken by the Voyager 1 spacecraft, from a distance of more than 4 billion miles. The Earth is the tiny dot approximately halfway down the ray of light on the right.</p>
+        </div>
+
     </div>
     <div class="footer">
       <p class="footer__content footer__content--copyright">Copyright &copy; 2019 Artem Petrov</p>
@@ -98,7 +103,7 @@
           </a>
         </li>
         <li>
-          <a href="mailto:#" target="_blank">
+          <a href="mailto:" target="_blank">
             <svg class="icon icon-mail4">
               <use xlink:href="#icon-mail4"></use>
             </svg>
