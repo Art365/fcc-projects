@@ -10,15 +10,16 @@
   --container-color: hsl(36, 52%, 88%);
   --hdr-ftr-color: rgb(60, 75, 170);
   --main-red: #D00;
+  --quote-color: #6f6f6f;
 }
 
-/* ::selection {
-  background: #33F;
-} */
+::selection {
+  background:  var(--hdr-ftr-color);
+}
 
 body {
   font-family: 'Arimo', sans-serif;
-  color: #444;
+  color: #353535;
   width: 100%;
   background: var(--body-color);
   position: relative;
@@ -76,7 +77,6 @@ body {
   position: absolute;
   margin-top: 8.8vmin;
   background-color: var(--main-red);
-  /* background: linear-gradient(to right, var(--main-red), #d60); */
   clip-path: polygon(101% 104%, 0 50%, 101% -4%);
   height: 4vmin;
   width: 65vmin;
@@ -168,10 +168,8 @@ body {
   max-width: 100vmin;
   display: flex;
   flex-wrap: wrap;
-  /* padding: 2vmin 2vmin 28vh; */
   padding: 2vmin;
   margin-bottom: 27vh;
-  /* margin-bottom: calc(60vmin - calc(60vmin - 27vh)); */
 }
 
 .info__block {
@@ -181,13 +179,12 @@ body {
   padding: 3vmin;
 }
 
-.info__block--quote {
+.info__block--wide {
   flex-basis: 100%;
-  font-style: italic;
-  color: #6f6f6f;
 }
 
-.info__block--quote > q {
+.info__quote {
+  color: var(--quote-color);
   display: block;
   padding-left: 2vmin;
   border-left: 4px solid var(--main-red);
@@ -249,5 +246,11 @@ body {
   transition: fill 200ms ease-in-out;
 }
 
+blockquote {
+  color: var(--quote-color);
+}
 
-/* Use cherry color for links, reference to Carl's sweater: #8c1212; */
+a {
+  color: var(--main-red);
+  text-decoration: none;
+}
