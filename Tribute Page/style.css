@@ -120,8 +120,11 @@ body {
 }
 
 .hero__img-div {
-  position: relative;
-  width: 100%;
+  position: absolute;
+  top: 0;
+  margin: auto;
+  width: 100vmax;
+  max-width: 100vmin;
   height: 100%;
   display: flex;
   justify-content: center;
@@ -131,8 +134,11 @@ body {
   position: absolute;
   object-fit: cover;
   opacity: 0;
-  height: 100%;
-  width: auto;
+  height: auto;
+  min-height: 100%;
+  width: 100%;
+  max-height: 100%;
+  max-width: 100%;
   transition: opacity 1000ms ease-in-out;
 }
 
@@ -151,7 +157,7 @@ body {
   background-color: rgb(60, 75, 170);
   opacity: 0.7;
   font-size: calc(0.46em + 0.66vmin);
-  padding: 2vmin 6.6vmin calc(2.6em + 3.8vmin);
+  padding: 2vmin 12vmin calc(2.6em + 3.8vmin);
   color: white;
   transition: transform 400ms ease-in;
 }
